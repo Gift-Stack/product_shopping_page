@@ -5,6 +5,7 @@ import AppLayout from './components/layout'
 // Required deps
 import Grid from '@mui/material/Grid'
 import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
 import { Main, DrawerHeader } from './components/layout/styles'
 
 // Product Context
@@ -77,6 +78,9 @@ function App() {
     >
       <Main open={open}>
         <DrawerHeader />
+        <Typography fontWeight="bolder" fontSize="smaller">
+          Shop by categories
+        </Typography>
         {categories &&
           categories?.map((category: string, index) => (
             <Category
