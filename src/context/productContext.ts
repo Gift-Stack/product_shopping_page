@@ -4,7 +4,6 @@ import { products } from '../products'
 type ProductContextInterface = {
   products: typeof products
   isLoading: boolean
-  getProducts(): void
 }
 
 const defaultValues = {

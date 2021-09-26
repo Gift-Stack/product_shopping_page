@@ -19,10 +19,11 @@ interface PropsType {
   open: boolean
   handleDrawerClose(): void
   cartItems: CartItemType<ProductIdType>[]
+  deleteItem(arg: string): void
 }
 
 const Sidebar = (props: PropsType) => {
-  const { open, handleDrawerClose, cartItems } = props
+  const { open, handleDrawerClose, cartItems, deleteItem } = props
   const theme = useTheme()
 
   return (
@@ -71,7 +72,13 @@ const Sidebar = (props: PropsType) => {
         }}
       >
         {cartItems.length > 0 &&
-          cartItems?.map((cart) => <CartItem key={cart?.productId?.value} />)}
+          cartItems?.map((cart) => (
+            <CartItem
+              key={cart?.productId?.value}
+              cart={cart}
+              deleteItem={deleteItem}
+            />
+          ))}
       </Paper>
     </Drawer>
   )

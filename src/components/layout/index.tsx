@@ -13,10 +13,11 @@ interface AppLayoutProps {
   open: boolean
   setOpen(arg: boolean): void
   cartItems: CartItemType<ProductIdType>[]
+  deleteItem(arg: string): void
 }
 
 const AppLayout = (props: AppLayoutProps) => {
-  const { children, open, setOpen, cartItems } = props
+  const { children, open, setOpen, cartItems, deleteItem } = props
 
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -34,6 +35,7 @@ const AppLayout = (props: AppLayoutProps) => {
         open={open}
         handleDrawerClose={handleDrawerClose}
         cartItems={cartItems}
+        deleteItem={deleteItem}
       />
     </Box>
   )

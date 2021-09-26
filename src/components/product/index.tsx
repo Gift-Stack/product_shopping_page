@@ -13,7 +13,7 @@ interface ProductType {
 
 const Product = (props: ProductType) => {
   const {
-    product: { name, price, imageUrl, category, productId },
+    product: { name, price, imageUrl },
     addToCart,
     setOpen
   } = props

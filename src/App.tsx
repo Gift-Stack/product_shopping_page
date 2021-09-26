@@ -4,7 +4,6 @@ import AppLayout from './components/layout'
 
 // Required deps
 import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
 import IconButton from '@mui/material/IconButton'
 import { Main, DrawerHeader } from './components/layout/styles'
 
@@ -31,7 +30,6 @@ function App() {
   const [open, setOpen] = useState<boolean>(true)
   const [items, setItems] = useState<CartItemType<ProductIdType>[]>([])
   const [categories, setCategories] = useState<string[]>([])
-  // const [filteredCategories, setFilteredCategories] = useState<string[]>([])
   const [cartItems, setCartItems] = useState<CartItemType<ProductIdType>[]>([])
 
   const context = useContext(ProductContext)
@@ -53,7 +51,7 @@ function App() {
   const filterProduct = (category: string | null) => {
     setItems(
       typeof category === 'string'
-        ? items.filter((item) => item.category === category)
+        ? products.filter((item) => item.category === category)
         : products
     )
   }
@@ -65,8 +63,18 @@ function App() {
     if (hasBeenAdded.length === 0) setCartItems([...cartItems, product])
   }
 
+  const deleteItem = (id: string) => {
+    const returnValue = cartItems.filter((item) => item.productId.value !== id)
+    setCartItems(returnValue)
+  }
+
   return (
-    <AppLayout open={open} setOpen={setOpen} cartItems={cartItems}>
+    <AppLayout
+      open={open}
+      setOpen={setOpen}
+      cartItems={cartItems}
+      deleteItem={deleteItem}
+    >
       <Main open={open}>
         <DrawerHeader />
         {categories &&
@@ -92,8 +100,6 @@ function App() {
         >
           <PlaylistAddCheckIcon />
         </IconButton>
-
-        {/*  */}
 
         <Grid item xs={12}>
           <Grid container justifyContent="center" spacing={2}>
